@@ -1,0 +1,26 @@
+{
+  "name": "package-watch",
+  "private": true,
+  "scripts": {
+    "start": "meteor run",
+    "transpile": "mv './.babelrc.RENAMED' './.babelrc';babel node_modules/quasar-framework/dist/quasar.esm.js --out-file node_modules/quasar-framework/dist/quasar.common.js;mv './.babelrc' './.babelrc.RENAMED'",
+    "transpile-windows": "move .babelrc.QUASAR .babelrc & meteor npx babel node_modules/quasar-framework/dist/quasar.esm.js --out-file node_modules/quasar-framework/dist/quasar.common.js & powershell -Command \"(gc node_modules\\quasar-framework\\package.json) -replace 'dist/quasar.esm.js', 'dist/quasar.common.js' | sc node_modules\\quasar-framework\\package.json\" & move .babelrc .babelrc.QUASAR"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.36",
+    "meteor-node-stubs": "^0.3.2",
+    "quasar-extras": "^1.0.2",
+    "quasar-framework": "^0.14.9",
+    "vue": "^2.5.13",
+    "vue-meteor-tracker": "^1.0.3",
+    "vue-router": "^3.0.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.38",
+    "@babel/preset-typescript": "^7.0.0-beta.38",
+    "@types/meteor": "^1.4.13",
+    "babel": "^6.23.0",
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
