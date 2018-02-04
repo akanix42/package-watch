@@ -1,8 +1,10 @@
 <template>
   <div :class="$style.container">
+    <h1 :class="$style.title">Package Watch</h1>
+    <h6 :class="$style.tagline">Take the hassle out of managing dependencies!</h6>
     <form
         :class="$style.form"
-        @submit="submitScan"
+        @submit.prevent="submitScan"
     >
       <div class="col-12">
         <QField
@@ -15,6 +17,7 @@
         <QBtn type="submit">Check Dependencies</QBtn>
       </div>
     </form>
+    <ScanProgress v-if="scanId" :scanId="scanId"/>
   </div>
 </template>
 
@@ -22,17 +25,22 @@
   import { QBtn, QField, QInput } from 'quasar-framework';
   import { IScan } from '../../../collections/scans';
   import requestScan from '../../../methods/requestScan';
+  import ScanProgress from '../../components/ScanProgress';
+  import { $style } from './Landing.vue';
 
   export default {
     name: 'landing',
     components: {
+      ScanProgress,
       QBtn,
       QField,
       QInput,
     },
     data() {
       return {
+        $style,
         scan: null,
+        scanId: null,
         urlToScan: null,
       };
     },
@@ -41,10 +49,9 @@
         const result = await requestScan.call({ url: this.urlToScan }) as IScan;
         if (result._id) {
           this.scan = result;
+        } else {
+          this.scanId = result;
         }
-
-        alert('TODO: subscribe to scan publication');
-
       },
     },
   }
@@ -57,7 +64,20 @@
     max-width: 90vw;
   }
 
-  .form {
+  .center {
     composes: flex justify-center from global;
+  }
+
+  .title {
+    composes: center;
+  }
+
+  .tagline {
+    composes: center;
+    /*composes: text-italic from global;*/
+  }
+
+  .form {
+    composes: center;
   }
 </style>

@@ -1,12 +1,26 @@
 import Method from 'meteor-method';
 import scansCollection, { IScan } from '../collections/scans';
 
-const requestScan = new Method('scan/request', ({url}): IScan | string => {
+interface IFinishedScanResult {
+  _id: string,
+  isFinished: boolean,
+}
+
+const requestScan = new Method('scan/request', ({ url }): IFinishedScanResult | string => {
   let scan;
-  if (scan = scansCollection.findOne({url})) {
-    return scan;
+  if (scan = scansCollection.findOne({ url })) {
+    if (scan.isFinished)
+      return { _id: scan._id, isFinished: true };
   }
-  return scansCollection.insert(url);
+
+  return simulateScan(scansCollection.insert({
+    status: 'queued',
+    url,
+  }));
 });
 
 export default requestScan;
+
+function simulateScan(scanId: string): string {
+  return scanId;
+}

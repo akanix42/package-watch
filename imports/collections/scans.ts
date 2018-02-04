@@ -1,6 +1,9 @@
 import { Mongo } from 'meteor/mongo';
 
 export interface IScan {
+  _id?: string,
+  isFinished?: boolean,
+  status: string,
   url: string,
 }
 
