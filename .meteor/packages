@@ -24,7 +24,7 @@ nathantreid:typescript-babel
 ## <Vue Build Plugins>
 static-html
 akryum:vue
-akryum:vue-component
+nathantreid:vue-component
 nathantreid:vue-css-modules
 nathantreid:vue-sass
 nathantreid:vue-typescript-babel

@@ -6,6 +6,8 @@
 
 <script>
   import Quasar from 'quasar-framework';
+  import 'quasar-framework/dist/quasar.mat.css';
+
   Vue.use(Quasar, {});
 
   export default {

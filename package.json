@@ -8,7 +8,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0-beta.36",
+    "meteor-method": "0.0.3",
     "meteor-node-stubs": "^0.3.2",
+    "meteor-publication": "0.0.2-beta.2",
     "quasar-extras": "^1.0.2",
     "quasar-framework": "^0.14.9",
     "vue": "^2.5.13",
@@ -22,5 +24,10 @@
     "babel": "^6.23.0",
     "babel-cli": "^6.26.0",
     "babel-preset-es2015": "^6.24.1"
+  },
+  "cssModules": {
+    "passthroughPaths": [
+      "node_modules/"
+    ]
   }
 }

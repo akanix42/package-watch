@@ -1,6 +1,5 @@
 interface IStyles {
-        test: string
-test2s: string
-foo: string
+        container: string
+form: string
       }
       export const $style: IStyles;
