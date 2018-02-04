@@ -5,7 +5,7 @@ import router from './routes';
 
 import '../methods/';
 import '../publications/';
-
+import './vue.config';
 
 Meteor.startup(() => {
   const app = new Vue({

@@ -1,11 +1,15 @@
 <template>
   <div>
     <div>Scan: {{scanId}}</div>
-    <div v-if="scan">Status: {{scan.status}}</div>
+    <div v-if="scan">
+      Scan: {{scan}}
+      Status: {{scan.status}}
+    </div>
   </div>
 </template>
 
 <script>
+  import scansCollection from '../../collections/scans';
   import scanProgress from '../../publications/scanProgress';
 
   export default {
@@ -19,13 +23,18 @@
         scan: null,
       };
     },
+    created() {
+      // scanProgress.withData(this.scanId).subscribe();
+    },
     meteor: {
-      subscribe: [
-        [scanProgress.withData(2)]
-      ],
+      $subscribe: {
+        scans() {
+          return [scanProgress.withData(this.scanId)];
+        },
+      },
       scan() {
-        return scansCollection.find({ _id: this.scanId });
-      }
+        return scansCollection.findOne({ _id: this.scanId });
+      },
     },
   }
 </script>

@@ -10,7 +10,7 @@
         <QField
             helper="Git, NPM, or Atmosphere url"
         >
-          <QInput v-model="urlToScan" float-label="URL to scan"/>
+          <QInput v-model="urlToScan" float-label="URL to scan" />
         </QField>
       </div>
       <div class="row">
@@ -26,7 +26,6 @@
   import { IScan } from '../../../collections/scans';
   import requestScan from '../../../methods/requestScan';
   import ScanProgress from '../../components/ScanProgress';
-  import { $style } from './Landing.vue';
 
   export default {
     name: 'landing',
@@ -38,10 +37,9 @@
     },
     data() {
       return {
-        $style,
         scan: null,
         scanId: null,
-        urlToScan: null,
+        urlToScan: 'https://www.npmjs.com/package/meteor-project-path',
       };
     },
     methods: {

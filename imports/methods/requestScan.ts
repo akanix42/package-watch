@@ -11,6 +11,7 @@ const requestScan = new Method('scan/request', ({ url }): IFinishedScanResult | 
   if (scan = scansCollection.findOne({ url })) {
     if (scan.isFinished)
       return { _id: scan._id, isFinished: true };
+    return scan._id;
   }
 
   return simulateScan(scansCollection.insert({
